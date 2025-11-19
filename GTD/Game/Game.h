@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "GameObject.h"
+#include "Collision.h"
 
 class Game
 {
@@ -8,6 +9,8 @@ public:
 	void Start();
 	void Update();
 	void Render();
+
+	bool OnCollision(Collision first, Collision other);
 private:
 	GameObject player{};
 };

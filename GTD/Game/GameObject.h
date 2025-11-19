@@ -13,6 +13,7 @@ public:
 	void SetPositionV(Vector2 position);
 	void SetPosition(float x, float y);
 	void SetRotation(float rotation);
+	Collision GetCollider();
 private:
 	Vector2 position{};
 	float rotation{};

@@ -2,7 +2,7 @@
 
 GameObject::GameObject()
 {
-
+	
 }
 
 GameObject::~GameObject()
@@ -44,4 +44,9 @@ void GameObject::SetPosition(float x, float y)
 void GameObject::SetRotation(float rotation)
 {
 	this->rotation = rotation;
+}
+
+Collision GameObject::GetCollider()
+{
+	return collision;
 }
