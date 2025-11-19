@@ -12,10 +12,15 @@ GameObject::~GameObject()
 
 void GameObject::Render()
 {
-	if (sprite.id != 0) {
-		DrawTexture(sprite, position.x, position.y, WHITE);
+	if (sprite.id != 0) 
+	{
+		Rectangle source = { 0, 0, 32, 32 };
+		Rectangle dest = { position.x, position.y, 32, 32 };
+		Vector2 origin = { 16, 16 };
+		DrawTexturePro(sprite, source, dest, origin, rotation, WHITE);
 	}
-	else {
+	else 
+	{
 		DrawRectangle(position.x, position.y, 32, 32, WHITE);
 	}
 }
@@ -34,4 +39,9 @@ void GameObject::SetPosition(float x, float y)
 {
 	this->position.x = x;
 	this->position.y = y;
+}
+
+void GameObject::SetRotation(float rotation)
+{
+	this->rotation = rotation;
 }

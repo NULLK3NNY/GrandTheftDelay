@@ -9,7 +9,6 @@ public:
 	void Update();
 	void Render();
 private:
-	GameObject epicFace{};
-	float x{};
+	GameObject player{};
 };
 
