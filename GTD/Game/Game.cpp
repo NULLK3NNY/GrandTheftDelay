@@ -8,20 +8,27 @@ void Game::Start()
     InitWindow(screenWidth, screenHeight, "Grand Theft Delay");
     SetTargetFPS(60);
 
-    // Epic face
-    player.SetSprite(LoadTexture("assets/epic_face.png"));
-    player.SetPosition(screenWidth / 2, screenHeight / 2);
+    // Create player
+	player = new Player();
+	player->SetWidth(32);
+	player->SetHeight(32);
+	player->SetSpeed(200.0f);
+    player->SetSprite(LoadTexture("assets/epic_face.png"));
+    player->SetPosition(screenWidth / 2, screenHeight / 2);
 	
 }
 
 void Game::Update()
 {
+	deltaTime = GetFrameTime();
 
+	player->OnFootMovement(deltaTime);
 }
 
 void Game::Render()
 {
-    player.Render();
+    player->Render();
+	player->GetCollider().DrawBox();
 }
 
 bool Game::OnCollision(Collision first, Collision other)

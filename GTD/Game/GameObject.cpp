@@ -2,7 +2,7 @@
 
 GameObject::GameObject()
 {
-	
+
 }
 
 GameObject::~GameObject()
@@ -14,20 +14,25 @@ void GameObject::Render()
 {
 	if (sprite.id != 0) 
 	{
-		Rectangle source = { 0, 0, 32, 32 };
-		Rectangle dest = { position.x, position.y, 32, 32 };
-		Vector2 origin = { 16, 16 };
+		source = { 0, 0, (float)width, (float)height };
+		dest = { position.x, position.y, (float)width, (float)height };
+		origin = { (float)width / 2, (float)height / 2 };
 		DrawTexturePro(sprite, source, dest, origin, rotation, WHITE);
 	}
 	else 
 	{
-		DrawRectangle(position.x, position.y, 32, 32, WHITE);
+		DrawRectangle(position.x, position.y, width, height, WHITE);
 	}
 }
 
 void GameObject::SetSprite(Texture2D sprite)
 {
 	this->sprite = sprite;
+}
+
+Vector2 GameObject::GetPosition()
+{
+	return position;
 }
 
 void GameObject::SetPositionV(Vector2 position)
@@ -46,7 +51,27 @@ void GameObject::SetRotation(float rotation)
 	this->rotation = rotation;
 }
 
+void GameObject::SetWidth(int width)
+{
+	this->width = width;
+}
+
+void GameObject::SetHeight(int height)
+{
+	this->height = height;
+}
+
 Collision GameObject::GetCollider()
 {
 	return collision;
+}
+
+void GameObject::MoveX(float speed, float deltaTime)
+{
+	position.x += speed * deltaTime;
+}
+
+void GameObject::MoveY(float speed, float deltaTime)
+{
+	position.y += speed * deltaTime;
 }

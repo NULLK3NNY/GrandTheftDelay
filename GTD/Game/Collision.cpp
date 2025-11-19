@@ -25,11 +25,6 @@ void Collision::SetHeight(int height)
 	this->height = height;
 }
 
-void Collision::SetPositionV(Vector2 position)
-{
-	this->position = position;
-}
-
 int Collision::GetWidth()
 {
 	return width;
@@ -43,6 +38,11 @@ int Collision::GetHeight()
 Vector2 Collision::GetPosition()
 {
 	return position;
+}
+
+void Collision::UpdateCollision(Vector2 position)
+{
+	this->position = position;
 }
 
 void Collision::DrawBox()
