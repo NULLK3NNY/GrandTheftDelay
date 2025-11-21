@@ -80,3 +80,8 @@ void GameObject::MoveY(float speed, float deltaTime)
 {
 	position.y += speed * deltaTime;
 }
+
+void GameObject::UpdateCollision()
+{
+	collider.UpdateCollisionV(position);
+}

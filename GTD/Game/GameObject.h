@@ -20,6 +20,8 @@ public:
 	void SetHeight(int height);
 	void MoveX(float speed, float deltaTime);
 	void MoveY(float speed, float deltaTime);
+	void SetupCollision();
+	void UpdateCollision();
 private:
 	Vector2 position{};
 	float rotation{};
@@ -29,5 +31,6 @@ private:
 	Rectangle dest{};
 	Vector2 origin{};
 	Texture2D sprite{};
+	Collision collider{};
 };
 
