@@ -2,7 +2,7 @@
 
 GameObject::GameObject()
 {
-
+	
 }
 
 GameObject::~GameObject()
@@ -51,19 +51,24 @@ void GameObject::SetRotation(float rotation)
 	this->rotation = rotation;
 }
 
+int GameObject::GetWidth()
+{
+	return width;
+}
+
 void GameObject::SetWidth(int width)
 {
 	this->width = width;
 }
 
+int GameObject::GetHeight()
+{
+	return height;
+}
+
 void GameObject::SetHeight(int height)
 {
 	this->height = height;
-}
-
-Collision GameObject::GetCollider()
-{
-	return collision;
 }
 
 void GameObject::MoveX(float speed, float deltaTime)

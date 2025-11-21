@@ -40,9 +40,15 @@ Vector2 Collision::GetPosition()
 	return position;
 }
 
-void Collision::UpdateCollision(Vector2 position)
+void Collision::UpdateCollisionV(Vector2 position)
 {
 	this->position = position;
+}
+
+void Collision::UpdateCollision(float x, float y)
+{
+	this->position.x = x;
+	this->position.y = y;
 }
 
 void Collision::DrawBox()
@@ -53,9 +59,4 @@ void Collision::DrawBox()
 bool Collision::GetCanCollide()
 {
 	return canCollide;
-}
-
-void Collision::SetCanCollide(bool value)
-{
-	this->canCollide = value;
 }

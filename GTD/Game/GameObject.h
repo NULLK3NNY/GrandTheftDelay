@@ -14,9 +14,10 @@ public:
 	void SetPositionV(Vector2 position);
 	void SetPosition(float x, float y);
 	void SetRotation(float rotation);
+	int GetWidth();
 	void SetWidth(int width);
+	int GetHeight();
 	void SetHeight(int height);
-	Collision GetCollider();
 	void MoveX(float speed, float deltaTime);
 	void MoveY(float speed, float deltaTime);
 private:
@@ -28,6 +29,5 @@ private:
 	Rectangle dest{};
 	Vector2 origin{};
 	Texture2D sprite{};
-	Collision collision{};
 };
 

@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-	
+
 }
 
 void Player::OnFootMovement(float deltaTime)

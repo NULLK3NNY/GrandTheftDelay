@@ -12,10 +12,10 @@ public:
 	int GetHeight();
 	void SetHeight(int height);
 	Vector2 GetPosition();
-	void UpdateCollision(Vector2 position);
+	void UpdateCollisionV(Vector2 position);
+	void UpdateCollision(float x, float y);
 	void DrawBox();
 	bool GetCanCollide();
-	void SetCanCollide(bool value);
 private:
 	Vector2 position{};
 	int width{};
