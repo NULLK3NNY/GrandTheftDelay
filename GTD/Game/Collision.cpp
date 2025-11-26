@@ -2,7 +2,7 @@
 
 Collision::Collision()
 {
-	Enable();
+
 }
 
 void Collision::Enable()
@@ -40,15 +40,10 @@ Vector2 Collision::GetPosition()
 	return position;
 }
 
-void Collision::UpdateCollisionV(Vector2 position)
-{
-	this->position = position;
-}
-
 void Collision::UpdateCollision(float x, float y)
 {
-	this->position.x = x;
-	this->position.y = y;
+	this->position.x = x - width / 2;
+	this->position.y = y - width / 2;
 }
 
 void Collision::DrawBox()

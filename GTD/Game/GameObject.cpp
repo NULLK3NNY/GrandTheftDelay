@@ -81,7 +81,19 @@ void GameObject::MoveY(float speed, float deltaTime)
 	position.y += speed * deltaTime;
 }
 
+void GameObject::SetupCollisionBox(int width, int height)
+{
+	collider.Enable();
+	collider.SetWidth(width);
+	collider.SetHeight(height);
+}
+
 void GameObject::UpdateCollision()
 {
-	collider.UpdateCollisionV(position);
+	collider.UpdateCollision(position.x, position.y);
+}
+
+Collision GameObject::GetCollision()
+{
+	return collider;
 }

@@ -20,8 +20,9 @@ public:
 	void SetHeight(int height);
 	void MoveX(float speed, float deltaTime);
 	void MoveY(float speed, float deltaTime);
-	void SetupCollision();
+	void SetupCollisionBox(int width, int height);
 	void UpdateCollision();
+	Collision GetCollision();
 private:
 	Vector2 position{};
 	float rotation{};

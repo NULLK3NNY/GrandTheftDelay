@@ -4,8 +4,6 @@ Game::~Game()
 {
 	// Clean up
 	delete(player);
-	delete(playerCollider);
-	delete(testCollider);
 	delete(debug);
 }
 
@@ -22,21 +20,21 @@ void Game::Start()
 
     // Create player
 	player = new Player();
-	player->SetWidth(32);
-	player->SetHeight(32);
+	player->SetWidth(64);
+	player->SetHeight(64);
 	player->SetSpeed(200.0f);
     player->SetSprite(LoadTexture("assets/epic_face.png"));
     player->SetPosition(screenWidth / 2, screenHeight / 2);
-	// Create collision for player
-	playerCollider = new Collision();
-	playerCollider->SetWidth(32);
-	playerCollider->SetHeight(32);
+	// Give player a collision box
+	player->SetupCollisionBox(player->GetWidth(), player->GetHeight());
+	player->GetCollision().Enable();
 
-	// Create test collider
-	testCollider = new Collision();
-	testCollider->SetWidth(32);
-	testCollider->SetHeight(32);
-	testCollider->UpdateCollisionV(Vector2{ 200, 200 });
+	// Create a test object
+	testObject = new GameObject();
+	testObject->SetWidth(100);
+	testObject->SetHeight(100);
+	testObject->SetupCollisionBox(testObject->GetWidth(), testObject->GetHeight());
+	testObject->GetCollision().Enable();
 }
 
 void Game::Update()
@@ -50,30 +48,29 @@ void Game::Update()
 void Game::Render()
 {
     player->Render();
-	playerCollider->DrawBox();
-	testCollider->DrawBox();
+	player->GetCollision().DrawBox();
+	testObject->GetCollision().DrawBox();
 }
 
 void Game::ProcessCollisions()
 {
-	// Player collision
-	playerCollider->UpdateCollision(player->GetPosition().x - player->GetWidth() / 2, player->GetPosition().y - player->GetHeight() / 2);
+	player->UpdateCollision();
+	testObject->UpdateCollision();
 
-	// Check collision between two objects
-	if (OnCollision(playerCollider, testCollider))
+	if (OnCollision(player->GetCollision(), testObject->GetCollision()))
 	{
 		debug->PrintString("Collision Detected");
 	}
 }
 
-bool Game::OnCollision(Collision* first, Collision* other)
+bool Game::OnCollision(Collision first, Collision other)
 {
-	if (first->GetCanCollide() && other->GetCanCollide())
+	if (first.GetCanCollide() && other.GetCanCollide())
 	{
-		if (first->GetPosition().x < other->GetPosition().x + other->GetWidth() &&
-			first->GetPosition().x + first->GetWidth() > other->GetPosition().x &&
-			first->GetPosition().y < other->GetPosition().y + other->GetHeight() &&
-			first->GetPosition().y + first->GetHeight() > other->GetPosition().y)
+		if (first.GetPosition().x < other.GetPosition().x + other.GetWidth() &&
+			first.GetPosition().x + first.GetWidth() > other.GetPosition().x &&
+			first.GetPosition().y < other.GetPosition().y + other.GetHeight() &&
+			first.GetPosition().y + first.GetHeight() > other.GetPosition().y)
 		{
 			return true;
 		}

@@ -14,12 +14,11 @@ public:
 	void Render();
 	// Collision
 	void ProcessCollisions();
-	bool OnCollision(Collision* first, Collision* other);
+	bool OnCollision(Collision first, Collision other);
 private:
 	float deltaTime{};
 	Player* player{};
-	Collision* playerCollider{};
-	Collision* testCollider{};
+	GameObject* testObject{};
 	Debug* debug{};
 };
 
